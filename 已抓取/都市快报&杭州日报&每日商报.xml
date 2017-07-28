@@ -1,0 +1,36 @@
+<job jobClass="com.apabi.crawler.job.impl.DuShiKuaiBao">
+			<PaperName>都市快报</PaperName>
+			<DateRegex>\d{4}/\d{2}/\d{2}</DateRegex>
+			<DatePattern>yyyy/MM/dd</DatePattern>
+			<SiteRoot><![CDATA[http://hzdaily.hangzhou.com.cn/dskb/]]></SiteRoot>
+		    <IndexURLRegex><![CDATA[0000/00/00/page_list_00000000.html]]></IndexURLRegex>
+			<PageRegex><![CDATA[<a[\s\S].*?>第([\s\S]{0,10}?)版：([^<]*?)</a>]]></PageRegex>
+			<PageImageRegex><![CDATA[<img src="(.*?.jpg)]]></PageImageRegex>
+			<ArticleRegex><![CDATA[<area[\s\S]*?coords="(.*?)" href="([\S]+?)">]]></ArticleRegex>
+		    <ArticleImageRegex><![CDATA[<div class="text-center">[\s\S]*?<img src="(.*?)"]]></ArticleImageRegex>
+		    <ArticleContentRegex><![CDATA[<div class="content">[\s\S]*?<p>([\s\S]*?)<div class="container footer]]></ArticleContentRegex>
+		</job>
+		<job jobClass="com.apabi.crawler.job.impl.DuShiKuaiBao">
+			<PaperName>杭州日报</PaperName>
+			<DateRegex>\d{4}/\d{2}/\d{2}</DateRegex>
+			<DatePattern>yyyy/MM/dd</DatePattern>
+			<SiteRoot><![CDATA[http://hzdaily.hangzhou.com.cn/hzrb/]]></SiteRoot>
+		    <IndexURLRegex><![CDATA[0000/00/00/page_list_00000000.html]]></IndexURLRegex>
+			<PageRegex><![CDATA[<a[\s\S].*?>第([\s\S]{0,10}?)版：([^<]*?)</a>]]></PageRegex>
+			<PageImageRegex><![CDATA[<img src="(.*?.jpg)]]></PageImageRegex>
+			<ArticleRegex><![CDATA[<area[\s\S]*?coords="(.*?)" href="([\S]+?)">]]></ArticleRegex>
+		    <ArticleImageRegex><![CDATA[<div class="text-center">[\s\S]*?<img src="(.*?)"]]></ArticleImageRegex>
+		    <ArticleContentRegex><![CDATA[<div class="content">[\s\S]*?<p>([\s\S]*?)<div class="container footer]]></ArticleContentRegex>
+		</job>
+		<job jobClass="com.apabi.crawler.job.impl.DuShiKuaiBao">
+			<PaperName>每日商报</PaperName>
+			<DateRegex>\d{4}/\d{2}/\d{2}</DateRegex>
+			<DatePattern>yyyy/MM/dd</DatePattern>
+			<SiteRoot><![CDATA[http://hzdaily.hangzhou.com.cn/mrsb/]]></SiteRoot>
+		    <IndexURLRegex><![CDATA[0000/00/00/page_list_00000000.html]]></IndexURLRegex>
+			<PageRegex><![CDATA[<a[\s\S].*?>第([\s\S]{0,10}?)版：([^<]*?)</a>]]></PageRegex>
+			<PageImageRegex><![CDATA[<img src="(.*?.jpg)]]></PageImageRegex>
+			<ArticleRegex><![CDATA[<area[\s\S]*?coords="(.*?)" href="([\S]+?)">]]></ArticleRegex>
+		    <ArticleImageRegex><![CDATA[<div class="text-center">[\s\S]*?<img src="(.*?)"]]></ArticleImageRegex>
+		    <ArticleContentRegex><![CDATA[<div class="content">[\s\S]*?<p>([\s\S]*?)<div class="container footer]]></ArticleContentRegex>
+		</job>
