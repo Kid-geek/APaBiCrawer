@@ -1,0 +1,11 @@
+<job jobClass="com.apabi.crawler.job.impl.ChangShaWanBao">
+			<PaperName>长沙晚报</PaperName>
+			<SiteRoot><![CDATA[http://www.icswb.com/]]></SiteRoot>
+		    <IndexURLRegex><![CDATA[default.php?mod=newspaper&a=gen_one&channel_id=15&publish_date=0000-00-00]]></IndexURLRegex>
+			<PageRegex><![CDATA[<a href="([\s\S]{0,98})">([\s\S]{0,10})\(([\s\S]{0,3})\)<\/a>]]></PageRegex>
+			<PageImageRegex><![CDATA[<div style="z-index:1"><img id="img1" src="(.*?)" /></div>]]></PageImageRegex>
+			<PagePDFRegex><![CDATA[<div id="div_bt1" style="height:30px;line-height:30px;">[\s\S]*?<a href="(.*?.pdf)" target="_blank">]]></PagePDFRegex>
+			<ArticleRegex><![CDATA[<a href="(/newspaper_article-detail[\s\S]*?.html)">]]></ArticleRegex>
+		    <ArticleImageRegex><![CDATA[<img width="600"[\s\S]*?src="(.*?)">]]></ArticleImageRegex>
+		    <ArticleContentRegex><![CDATA[<p style="margin:10px;line-height:180%;font-size:120%;" id="content">([\s\S]*?)</p>]]></ArticleContentRegex>
+		</job>
