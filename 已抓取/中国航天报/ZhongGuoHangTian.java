@@ -20,6 +20,7 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -64,9 +65,30 @@ public class ZhongGuoHangTian extends ParsePageURLNumberNameJob {
 		String date = dateFormat.format(calendar.getTime());
 		// 获取URL
 		issueIndexURL = getURL(date);
-		String issueIndexResponseContent = HttpClientUtil.getResponseContent(issueIndexURL, issue.getJob());
+		
+		CloseableHttpClient closeableHttpClient = HttpClients.createDefault();
+		HttpGet httpGet = new HttpGet(issueIndexURL);
+		CloseableHttpResponse closeableHttpResponse = null;
+		try {
+			closeableHttpResponse = closeableHttpClient.execute(httpGet);
+		} catch (ClientProtocolException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		String entity = null ;
+		if (closeableHttpResponse.getStatusLine().getStatusCode() == 200) {
+			// 得到响应实体
+			try {
+				entity = EntityUtils.toString(closeableHttpResponse.getEntity(), "utf-8");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		String issueIndexResponseContent = entity;
 
-		if (StringUtils.isNotBlank(issueIndexResponseContent)) {
+		if (issueIndexResponseContent!=null) {
 
 			int groupCount = 3;
 
@@ -163,9 +185,10 @@ public class ZhongGuoHangTian extends ParsePageURLNumberNameJob {
 		StringBuffer logBuffer = new StringBuffer();
 		logBuffer.append("期次◆★");
 		logBuffer.append(issue.getJobConfig().getPaperName()).append("●").append(CrawlerUtil.dateNormalFormat(issue.getIssueDate()));
-		logBuffer.append("★◆不存在, 期次首页: ");
+		logBuffer.append("★◆不存在");
 		if(StringUtils.isNotBlank(issue.getIssueIndexURLTemplate())){
-			logBuffer.append(issue.getIssueIndexURLTemplate().replaceAll(issue.getJobConfig().getDateRegex(), DateFormatUtils.format(issue.getIssueDate(), issue.getJobConfig().getDatePattern())));
+//			logBuffer.append(issue.getIssueIndexURLTemplate().replaceAll(issue.getJobConfig().getDateRegex(), DateFormatUtils.format(issue.getIssueDate(), issue.getJobConfig().getDatePattern())));
+			
 		}
 		LOGGER.info(logBuffer.toString());
 	}
