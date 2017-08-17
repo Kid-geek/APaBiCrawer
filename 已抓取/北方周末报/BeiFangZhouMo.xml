@@ -1,0 +1,13 @@
+<job jobClass="com.apabi.crawler.job.impl.BeiFangZhouMo">
+			<PaperName>北方周末报</PaperName>
+			<Charset>gb2312</Charset>
+			<SiteRoot>http://szb.xbfw.com.cn/Html/</SiteRoot>
+			<IndexURLRegex><![CDATA[0000-00-00/Qpaper.html]]></IndexURLRegex>
+			<PageRegex><![CDATA[<a href='([\S]*?.html)'>([\S]+)：([\S]+)</a>]]></PageRegex>
+			<PageImageRegex><![CDATA[<img[\s\S]{0,100}? class="mapper showcoords iborder iopacity50 icolorff0000" src="([\S]+?.jpg)"]]></PageImageRegex>
+			<PagePDFRegex><![CDATA[<a href="([\S]+?.pdf)">]]></PagePDFRegex>
+			<ArticleRegex><![CDATA[<area[\s\S]{0,200}?href="([\s\S]{0,5}.html)" coords="([^"]*?)"]]></ArticleRegex>
+			<ArticleTitleRegex><![CDATA[<td[^>]*?class="title">(.*?)</td>]]></ArticleTitleRegex>
+			<ArticleContentRegex><![CDATA[<div id="content"[^>]*?>([\s\S]*?)</div>]]></ArticleContentRegex>
+			<ArticleImageRegex><![CDATA[<img[\s\S]{0,60}?alt="" src="([\S]+?.jpg)" />]]></ArticleImageRegex>
+		</job>
