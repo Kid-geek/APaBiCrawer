@@ -138,19 +138,35 @@ public class ZhongGuoHangKong extends ParsePageURLNumberNameJob {
 			HttpEntity entity = response.getEntity();
 			InputStream in = entity.getContent();
 			String result = IOUtils.toString(in);
-			// System.out.println(result);
-			String regexID = "\"id\":\"([\\s\\S]*?)\"[\\s\\S]*?\"pushTime\":\"" + date;
-			Pattern pattern = Pattern.compile(regexID);
-			Matcher matcher = pattern.matcher(result);
-
-			if (matcher.find()) {
-				id = matcher.group(1);
-				// System.out.println(id);
+			
+			Pattern pattern=Pattern.compile("\"id\"[\\s\\S]*?\"},");
+			Matcher matcher=pattern.matcher(result);
+			while(matcher.find()){
+				Pattern pattern1=Pattern.compile("\"id\":\"([\\s\\S]*?)\"[\\s\\S]*?\"pushTime\":\"" + date);
+				Matcher matcher1=pattern1.matcher(matcher.group(0));
+				if(matcher1.find()){
+					id=matcher1.group(1);
+					String dateURL = "http://ep.cannews.com.cn/publish/zghkb7/html/00/sec_000001.html";
+					String regexURL = "/\\d{2}";
+					URL = dateURL.replaceAll(regexURL, "/" + id);
+					
+				}
 			}
+			
+			
+			
+//			String regexID = "\"id\":\"([\\s\\S]*?)\"[\\s\\S]*?\"pushTime\":\"" + date;
+//			Pattern pattern = Pattern.compile(regexID);
+//			Matcher matcher = pattern.matcher(result);
+//
+//			if (matcher.find()) {
+//				id = matcher.group(1);
+//				// System.out.println(id);
+//			}
 
-			String dateURL = "http://ep.cannews.com.cn/publish/zghkb7/html/00/sec_000001.html";
-			String regexURL = "/\\d{2}";
-			URL = dateURL.replaceAll(regexURL, "/" + id);
+//			String dateURL = "http://ep.cannews.com.cn/publish/zghkb7/html/00/sec_000001.html";
+//			String regexURL = "/\\d{2}";
+//			URL = dateURL.replaceAll(regexURL, "/" + id);
 			// System.out.println(URL);
 
 		} catch (ClientProtocolException e) {
