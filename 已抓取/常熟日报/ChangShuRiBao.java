@@ -1,6 +1,8 @@
 package com.apabi.crawler.job.impl;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -13,6 +15,7 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.apache.http.Consts;
+import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -233,6 +236,10 @@ public class ChangShuRiBao extends ParsePageURLNumberNameJob {
 		}
 	}
 	
+	
+	
+	
+	
 	public static Set<ArticleImage> getArticleImageSet(String regex, CharSequence input, String fromURL, Job job) {
 		Set<ArticleImage> articleImageSet = new HashSet<ArticleImage>();
 		Matcher matcher = RegexUtil.matcher(regex, input);
@@ -275,7 +282,6 @@ public class ChangShuRiBao extends ParsePageURLNumberNameJob {
 	// 获取网页源码
 		public String getURLContent(String URL) {
 			CloseableHttpClient httpclient = HttpClients.createDefault();
-			
 			// 创建Post请求实例
 			HttpPost httpPost = new HttpPost("http://dzb.csxww.com/json/login.action");
 			// 创建参数列表
@@ -298,6 +304,43 @@ public class ChangShuRiBao extends ParsePageURLNumberNameJob {
 				e.printStackTrace();
 			}
 			return result;
+		}
+		
+		
+		
+		//下载版面图
+		public static void  downloadArticleImage(String ImgURL, String fileDirectory) {
+			CloseableHttpClient httpclient = HttpClients.createDefault();
+			// 创建Post请求实例
+			HttpPost httpPost = new HttpPost("http://dzb.csxww.com/json/login.action");
+			// 创建参数列表
+			List<NameValuePair> valuePairs = new LinkedList<NameValuePair>();
+			valuePairs.add(new BasicNameValuePair("username", "17744408473"));
+			valuePairs.add(new BasicNameValuePair("password", "apabi123"));
+			// 向对方服务器发送Post请求
+			// 将参数进行封装，提交到服务器端
+			UrlEncodedFormEntity entity = new UrlEncodedFormEntity(valuePairs, Consts.UTF_8);
+			httpPost.setEntity(entity);
+			String result=null;
+			try {
+				httpclient.execute(httpPost);// 登录
+				HttpGet httpget = new HttpGet(ImgURL);
+				CloseableHttpResponse response = httpclient.execute(httpget);
+				HttpEntity entitty = response.getEntity();  
+	            InputStream in = entitty.getContent();
+	            FileOutputStream fileOutputStream = null;
+	            byte[] data = new byte[1024];
+	            int len = 0;
+	            fileOutputStream = new FileOutputStream("E:/aa"+".png");
+	            while ((len = in.read(data)) != -1) {
+	            fileOutputStream.write(data, 0, len);
+	            }
+	            System.out.println("下载完成");
+			} catch (ClientProtocolException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	
 	
@@ -336,4 +379,6 @@ public class ChangShuRiBao extends ParsePageURLNumberNameJob {
 		logBuffer.append("★◆图片数: ").append(articleImageSet.size());
 		LOGGER.debug(logBuffer.toString());
 	}
+
+
 }
