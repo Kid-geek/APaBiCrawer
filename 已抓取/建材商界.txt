@@ -1,0 +1,11 @@
+<job jobClass="com.apabi.crawler.job.DefaultJob">
+		<PaperName>建材商界</PaperName>
+		<SiteRoot>http://www.jcsb.net/</SiteRoot>
+		<IndexURLRegex><![CDATA[html/0000-00/00/node_3.htm]]></IndexURLRegex>
+	    <PageRegex><![CDATA[<a id=pageLink href=([\s\S]{0,10}.htm)>第([\s\S]{0,2})版：([\s\S]{0,15})</a></td> <td nowrap align=middle width=25><a href=([\s\S]{0,50}.pdf)>]]></PageRegex>
+	    <PageImageRegex><![CDATA[<img src=([\s\S]{0,55}.jpg) border=0 USEMAP=#PagePicMap></div>]]></PageImageRegex>
+	    <ArticleRegex><![CDATA[<Area[\s\S]*?coords="([\s\S]*?)" shape="polygon" href="([\s\S]*?.htm)">]]></ArticleRegex>
+	    <ArticleTitleRegex><![CDATA[<td class="title1" align=center>([\s\S]{0,30})</td>]]></ArticleTitleRegex>
+	    <ArticleImageRegex><![CDATA[<IMG src="([\s\S]{0,50}.jpg)" width="450">]]></ArticleImageRegex>
+	    <ArticleContentRegex><![CDATA[><founder-content>([\s\S]*?)</founder-content>]]></ArticleContentRegex>
+		</job>

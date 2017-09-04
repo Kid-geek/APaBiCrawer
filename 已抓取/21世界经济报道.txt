@@ -1,0 +1,11 @@
+<job jobClass="com.apabi.crawler.job.ParsePageURLNumberNameJob">
+		<PaperName>21世界经济报道</PaperName>
+		<SiteRoot>http://epaper.21jingji.com/</SiteRoot>
+		<IndexURLRegex><![CDATA[html/0000-00/00/node_1.htm]]></IndexURLRegex>
+	    <PageRegex><![CDATA[<a href=([\s\S]{0,10}.htm) target="_blank">[\s\S]*?第([\s\S]{0,2})版<span>([\s\S]{0,20})</span></a></li>]]></PageRegex>
+	    <PageImageRegex><![CDATA[<img src=([\s\S]{0,60}.jpg) border=0 USEMAP=#PagePicMap>]]></PageImageRegex>
+	    <ArticleRegex><![CDATA[<Area coords="([\s\S]*?)" shape="polygon" href="([\s\S]{0,18}.htm)">]]></ArticleRegex>
+	    <ArticleTitleRegex><![CDATA[<h1 class="news_title"></h1>[\s\S]{0,3}<h1 class="news_title">([\s\S]*?)</h1>[\s\S]{0,3}<h1 class="news_title"></h1>]]></ArticleTitleRegex>
+	    <ArticleImageRegex><![CDATA[<IMG src="([\s\S]{0,60}.jpg)"></TD>]]></ArticleImageRegex>
+	    <ArticleContentRegex><![CDATA[<!--enpcontent-->([\s\S]*?)<!--/enpcontent-->]]></ArticleContentRegex>
+		</job>
