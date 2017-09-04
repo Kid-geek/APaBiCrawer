@@ -53,9 +53,7 @@ public class SiChuanJiaoYuDaoBao extends DefaultJob{
 		// 格式化日期为00000000
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd");
 		String date = dateFormat.format(calendar.getTime());
-		System.out.println(date);
 		issueIndexURL = "http://jydb.scedumedia.com/DocumentElectronic/"+getURL(date);
-		System.out.println(issueIndexURL);
 		String issueIndexResponseContent = HttpClientUtil.getResponseContent(issueIndexURL, issue.getJob());
 		if (StringUtils.isNotBlank(issueIndexResponseContent)) {
 			
@@ -100,13 +98,10 @@ public class SiChuanJiaoYuDaoBao extends DefaultJob{
 				}
 				issue.getPageQueue().addAll(pageSet);
 				logParsePageSize(jobConfig.getPaperName(), issue.getIssueDate(), pageSet);
-			} else {
-				logParseIssuePageFailure(issue);
-			}
-		} else {
-			logIssueNotFound(issue);
-		}
-		
+			} 
+		}else {
+			logParseIssuePageFailure(issue);
+		} 
 		
 	}
 
@@ -185,7 +180,7 @@ public class SiChuanJiaoYuDaoBao extends DefaultJob{
 			HttpEntity entity = response.getEntity();
 			InputStream in = entity.getContent();
 			String result = IOUtils.toString(in);
-			Pattern pattern=Pattern.compile(date+"</span> <a[\\s\\S]*? href=\"([\\s\\S]*?.html)\" target=\"_blank\">");
+			Pattern pattern=Pattern.compile(date+"</span> <a[\\s\\S]*? href=\"([\\s\\S]*?.html)\" target=\"_blank\">[\\s\\S]*?2017年");
 			Matcher matcher=pattern.matcher(result);
 			while(matcher.find()){
 				pageURL=matcher.group(1);
