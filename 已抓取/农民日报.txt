@@ -1,0 +1,9 @@
+<job jobClass="com.apabi.crawler.job.DefaultJob">
+		<PaperName>农民日报</PaperName>
+		<SiteRoot>http://szb.farmer.com.cn/</SiteRoot>
+		<IndexURLRegex><![CDATA[nmrb/html/0000-00/00/nbs.D110000nmrb_01.htm]]></IndexURLRegex>
+	    <PageRegex><![CDATA[<a id=pageLink href=([\s\S]{0,25}.htm)>第([\s\S]{0,2})版：([\s\S]{0,10})</a>[\s\S]{0,5}<a href=([\s\S]{0,50}.pdf)>]]></PageRegex>
+	    <PageImageRegex><![CDATA[<img[\s\S]{0,3}width=400 height=575 src=([\s\S]{0,40}.jpg) border=0 USEMAP=#PagePicMap>]]></PageImageRegex>
+	    <ArticleRegex><![CDATA[<Area coords="([\s\S]{0,50})" shape="polygon" href="([\s\S]{0,50})">]]></ArticleRegex>
+		<ArticleContentRegex><![CDATA[</script>[\s\S]{0,30}<founder-content>([\s\S]*?)</founder-content>[\s\S]{0,10}<INPUT]]></ArticleContentRegex>
+		</job>
