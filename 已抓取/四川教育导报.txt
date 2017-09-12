@@ -1,0 +1,9 @@
+		<job jobClass="com.apabi.crawler.job.impl.SiChuanJiaoYuDaoBao">
+			<PaperName>四川教育导报</PaperName>
+			<SiteRoot><![CDATA[http://jydb.scedumedia.com/]]></SiteRoot>
+			<IndexURLRegex><![CDATA[DocumentElectronic/index.html?ReturnUrl=%2f]]></IndexURLRegex>
+			<PageRegex><![CDATA[<li><a href="([\s\S]*?.pdf)" target="_blank">[\s\S]*?</a><a class="mulu" href="([\s\S]*?.html)">[\s\S]*?第([\s\S]*?)版 ([\s\S]{0,3})[\s\S]*?</a></li>]]></PageRegex>
+			<ArticleRegex><![CDATA[<area shape="rect" coords="([\s\S]*?)" href="([\s\S]{0,8}.html)"]]></ArticleRegex>
+			<ArticleImageRegex><![CDATA[align=middle src="([\s\S]*?.jpg)"></P>]]></ArticleImageRegex>
+			<ArticleContentRegex><![CDATA[<p class="yiyan"></p></founder-content>([\s\S]*?)</div>]]></ArticleContentRegex>
+		</job>
