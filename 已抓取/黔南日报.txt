@@ -1,0 +1,9 @@
+<job jobClass="com.apabi.crawler.job.DefaultJob">
+			<PaperName>黔南日报</PaperName>
+			<SiteRoot>http://cnepaper.com/qnrb/html/</SiteRoot>
+			<IndexURLRegex><![CDATA[0000-00/00/node_1.htm]]></IndexURLRegex>
+			<PageRegex><![CDATA[<a id="pageLink2" href="([\s\S]{0,10}.htm)">第([\s\S]{0,2})版：([\s\S]{0,20})</a>[\s\S]*?<a href="([\s\S]{0,40}.pdf)" target="_blank">]]></PageRegex>
+			<PageImageRegex><![CDATA[<img src="([\s\S]{0,65}.jpg)" border="0" usemap="#PagePicMap">]]></PageImageRegex>
+			<ArticleRegex><![CDATA[<area coords="([\s\S]*?)" shape="polygon" href="([\s\S]{0,15}.htm)">]]></ArticleRegex>
+			<ArticleImageRegex><![CDATA[<img src="([\s\S]{0,60}.jpg)" style=]]></ArticleImageRegex>
+		</job>
