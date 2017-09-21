@@ -1,0 +1,10 @@
+<job jobClass="com.apabi.crawler.job.DefaultJob">
+			<PaperName>´º³ÇÍí±¨</PaperName>
+			<SiteRoot>http://ccwb.yunnan.cn/html/</SiteRoot>
+			<IndexURLRegex><![CDATA[0000-00/00/node_19.htm]]></IndexURLRegex>
+			<PageRegex><![CDATA[<a id=pageLink href=([\s\S]{0,12}.htm)>µÚ([\s\S]{0,5})°æ£º([\s\S]{0,10})</a></td>[\s\S]{0,10}<td nowrap align=middle width=25><a href=([\s\S]{0,50}.pdf)>]]></PageRegex>
+			<PageImageRegex><![CDATA[<img src=([\s\S]{0,60}.jpg) border=0 USEMAP=#PagePicMap>]]></PageImageRegex>
+			<ArticleRegex><![CDATA[<Area[\s\S]{0,30}?coords="([\d,-]+?)"[\s\S]{0,30}?href="([\S]+?div=-1)"]]></ArticleRegex>
+			<ArticleTitleRegex><![CDATA[<td class="title1" align=center>([\s\S]{0,25})</td>]]></ArticleTitleRegex>
+			<ArticleImageRegex><![CDATA[<IMG src="([\s\S]{0,75}.jpg)"></A><BR>]]></ArticleImageRegex>
+		</job>
